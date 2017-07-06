@@ -21,11 +21,12 @@ docker run -d -p 3306:3306 \
 ```bash
 docker run -d -p 3307:3306  \
   --name mysql_slave \
-  -e MYSQL_MASTER_HOST=master \
+  -e MYSQL_MASTER_HOST=mysql_master \
+  -e MYSQL_MASTER_PORT=3306 \
   -e MYSQL_ROOT_PASSWORD=root_password \
   -e MYSQL_REPLICATION_USER=user_for_slave \
   -e MYSQL_REPLICATION_PASSWORD=user_password_for_slave \
-  --link mysql_master:master \
+  --link mysql_master:mysql_master \
   mishamx/mysql:5.7
 ```
 
