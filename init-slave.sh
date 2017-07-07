@@ -8,6 +8,13 @@
 REPLICATION_HEALTH_GRACE_PERIOD=${REPLICATION_HEALTH_GRACE_PERIOD:-3}
 REPLICATION_HEALTH_TIMEOUT=${REPLICATION_HEALTH_TIMEOUT:-10}
 
+echo "Waiting for MySQL Master"
+until mysql -h"$MYSQL_MASTER_HOST" -P"$MYSQL_MASTER_PORT" -u"$MYSQL_REPLICATION_USER" -p"$MYSQL_REPLICATION_PASSWORD" &> /dev/null
+do
+  printf "."
+  sleep 1
+done
+
 check_slave_health () {
   echo Checking replication health:
   status=$(mysql -u root -p$MYSQL_ROOT_PASSWORD -e "SHOW SLAVE STATUS\G")
