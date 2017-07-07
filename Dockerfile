@@ -3,7 +3,10 @@ FROM mysql:5.7
 ENV MYSQL_REPLICATION_USER replication
 ENV MYSQL_REPLICATION_PASSWORD replication_pass
 ENV MYSQL_MASTER_PORT 3306
+ENV MYSQL_DATABASE_DEFAULT_CHARSET utf8
+ENV MYSQL_DATABASE_DEFAULT_COLLATE utf8_unicode_ci
 
+COPY docker-entrypoint.sh /usr/local/bin/
 COPY replication-entrypoint.sh /usr/local/bin/
 COPY init-slave.sh /usr/local/bin/
 
