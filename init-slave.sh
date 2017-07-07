@@ -14,6 +14,7 @@ do
   printf "."
   sleep 1
 done
+echo " done"
 
 check_slave_health () {
   echo Checking replication health:
