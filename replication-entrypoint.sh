@@ -53,4 +53,10 @@ cat > /etc/mysql/mysql.conf.d/server-id.cnf << EOF
 server-id=$SERVER_ID
 EOF
 
+cat > /etc/mysql/mysql.conf.d/global.cnf << EOF
+[mysqld]
+expire_logs_days        = $EXPIRE_LOGS_DAYS
+max_binlog_size         = $MAX_BINLOG_SIZE
+EOF
+
 exec docker-entrypoint.sh "$@"
